@@ -78,20 +78,24 @@ def display_2d(function):
 	x, y = np.meshgrid(np.linspace(x_min, x_max, 100), np.linspace(x_min, x_max, 100))
 
 	z = function(x,y)	
-	contour_map = ax.contour(x, y, z, [0])
+	contour_map = ax.contour(x, y, z, [0], colors='k')
+	plt.axis('off')    
 
 	plt.show()
 
-circle_instance = Circle() # instantiate both shapes
-square_instance = Square()
+circle1 = Circle() # instantiate shapes
+square1 = Square()
+circle2 = Circle()
 
-circle_instance.translate(-1/2., 0) # translate both
-square_instance.translate(1/2., 1/2.)
+circle1.translate(-1/2., 0) # translate
+square1.translate(1/2., 1/2.)
+circle2.translate(1, 0)
 
-square_instance.rotation_angle(np.pi/4.) # define a rotation angle for the square
+square1.rotation_angle(np.pi/4.) # define a rotation angle for the square
 
-composite = circle_instance.union(square_instance)
-#composite = circle_instance.intersection(square_instance) # take their intersection
+composite_u = circle1.union(square1, circle2)
+composite_i = circle1.intersection(square1, circle2)
 
-display_2d(composite) # plot
+
+display_2d(composite_u) # plot
 
